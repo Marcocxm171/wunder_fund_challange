@@ -1,0 +1,13 @@
+@"
+datasets/
+.venv/
+venv/
+2/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+*.parquet
+*.csv
+models/
+*.onnx
+"@ | Set-Content .gitignore
