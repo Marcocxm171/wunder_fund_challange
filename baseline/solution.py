@@ -67,7 +67,7 @@ if __name__ == "__main__":
     import argparse
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from utils import ScorerStepByStep
+    from pkg.utils import ScorerStepByStep
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--validation", required=True)

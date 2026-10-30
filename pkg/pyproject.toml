@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=65.6.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "utils"
+version = "0.1.0"
+description = "wunderfund utils"
+readme = "README.md"
+
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]

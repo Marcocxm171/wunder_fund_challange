@@ -6,6 +6,8 @@ from pathlib import Path
 import numpy as np
 import pyarrow.parquet as pq
 
+import onnxruntime as ort
+
 SEQUENCE_LENGTH = 20_000
 WARMUP = 99
 N_FEATURES = 112
@@ -23,6 +25,27 @@ class DataPoint:
     step_in_seq: int
     need_prediction: bool
     state: np.ndarray
+
+
+def grab_session(weights_name: str = "baseline.onnx") -> ort.InferenceSession:
+    options = ort.SessionOptions()
+    options.intra_op_num_threads = 1
+    options.inter_op_num_threads = 1
+    options.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+    options.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+    options.use_per_session_threads = True
+    options.add_session_config_entry("session.intra_op.allow_spinning", "0")
+    options.add_session_config_entry("session.inter_op.allow_spinning", "0")
+    
+    return ort.InferenceSession(
+        str(Path(__file__).resolve().parent / weights_name),
+        sess_options=options,
+        providers=["CPUExecutionProvider"],
+    )
+
+
+
+
 
 
 def weighted_pearson(target, prediction):
