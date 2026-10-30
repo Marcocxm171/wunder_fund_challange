@@ -11,3 +11,6 @@ __pycache__/
 models/
 *.onnx
 "@ | Set-Content .gitignore
+
+.DS_STORE
+.vscode/*
