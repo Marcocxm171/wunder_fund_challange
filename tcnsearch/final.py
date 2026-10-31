@@ -165,7 +165,8 @@ def main():
         for k in ("full_scored_wp", "full_all_wp", "full_scored_t0", "full_scored_t1", "B_scored_wp", "B_all_wp", "A_scored_wp"):
             r[k] = f"{s[k]['mean']:.4f} ± {s[k]['sd']:.4f}"
         r["ensemble_full_scored"] = round(s["ensemble"]["full"]["scored"]["wp"], 4)
-        r["vs_gru_B"] = f"{s['vs_gru_B_scored']['diff']:+.4f} {s['vs_gru_B_scored']['combined_ci95']}" if "vs_gru_B_scored" in s else ""
+        v = s.get("vs_gru_B_scored")
+        r["vs_gru_B"] = f"{v['diff']:+.4f} [{v['combined_ci95'][0]:+.4f}, {v['combined_ci95'][1]:+.4f}]" if v else ""
         r["train_min"] = round(s["train_minutes_mean"], 1)
         rows.append(r)
     with open(out / "final_table.csv", "w", newline="") as fh:
