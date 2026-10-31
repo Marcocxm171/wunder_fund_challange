@@ -5,6 +5,8 @@ ModernTCN) against the verified GRU baseline. Everything is trained and judged w
 preprocessing, loss and **official competition metric**. It runs on any number of GPUs and resumes after
 interruptions.
 
+> **Running this for Marco?** Follow [HANDOFF.md](HANDOFF.md): step-by-step instructions and what to send back.
+
 ## 1. Setup
 
 ```bash
@@ -119,6 +121,7 @@ learning-rate check and a full-length run. Every decision and its rule is writte
 | `tcnsearch/final.py` | Final comparison against the GRU |
 | `tcnsearch/bench.py` | CPU speed |
 | `tcnsearch/report.py`, `notebooks/tcn_report.ipynb` | The report |
+| `tcnsearch/pack.py` | Zips the results to send back (no per-epoch weights) |
 
 ## 7. What each run folder contains
 
