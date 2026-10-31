@@ -25,7 +25,18 @@ wait for a go-ahead before running the rest.
 
 ## Step 1: Get the code and install
 
+Clone the code **inside your starter pack folder** (the one with `utils.py` and `datasets/`). The code then finds
+the data automatically:
+
+```
+wnn_connectome_starterpack/
+├── utils.py
+├── datasets/              train.parquet, valid.parquet, valid_mask.parquet
+└── wunder_fund_challange/ ← created by git clone; run every command from in here
+```
+
 ```bash
+cd /path/to/wnn_connectome_starterpack
 git clone https://github.com/Marcocxm171/wunder_fund_challange.git
 cd wunder_fund_challange
 python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
@@ -44,14 +55,16 @@ Check that PyTorch sees your GPUs:
 python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count(), torch.cuda.get_device_name(0))"
 ```
 
-## Step 2: Point it at the data
+## Step 2: Check it finds the data
 
 ```bash
-export WUNDER_ROOT=/path/to/wnn_connectome_starterpack      # Windows: set WUNDER_ROOT=C:\path\to\...
+python -c "from tcnsearch import data; print(data.find_root())"
 ```
 
-That folder must contain `utils.py` and the `datasets/` folder. Don't edit or replace `utils.py`: it is the
-competition's official metric.
+This should print your starter pack folder. Nothing to set if you cloned inside it as in Step 1.
+* **Code somewhere else?** Tell it where the data is:
+  `export WUNDER_ROOT=/path/to/wnn_connectome_starterpack` (Windows: `set WUNDER_ROOT=C:\path\to\...`).
+* **Don't edit or replace `utils.py`:** it is the competition's official metric.
 
 ## Step 3: Unit tests (about 4 minutes, CPU)
 
