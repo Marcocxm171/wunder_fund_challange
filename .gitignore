@@ -1,13 +1,15 @@
-@"
-datasets/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
 .venv/
 venv/
-2/
-__pycache__/
-.ipynb_checkpoints/
-*.pyc
+# data and results stay out of git
+datasets/
 *.parquet
-*.csv
-models/
+devroot/
+runs/
+report/
 *.onnx
-"@ | Set-Content .gitignore
+*.pt
+*.npy
+*.npz
